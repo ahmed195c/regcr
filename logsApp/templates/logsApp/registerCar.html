@@ -1,6 +1,24 @@
 {% extends "logsApp/layout.html" %}
 
 {% block body %}
-<h1>addcars </h1>
+<div>
+
+    
+    
+    
+    <form action="{% url 'logsApp:add' %}" dir="rtl" method="post">
+        {% csrf_token %}
+        <label for="ceoNumber">الرقم الاداري</label>
+        <input type="number" name="ceoNumber" id="ceoNumber" required>
+        <label for="carNumber">رقم السياره</label>
+        <input type="number" name="carNumber" id="carNumber" required>
+        <input type="submit" value="add">
+    </form>
+    {% for i in all %}
+    <h1>{{i.carNumber}}</h1>
+    {% endfor %}
+
+    <h1> car is {{car.carNumber}} user is : {{em.ceoName}}</h1>
+</div>
 
 {% endblock %}
