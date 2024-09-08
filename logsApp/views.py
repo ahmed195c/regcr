@@ -9,15 +9,19 @@ def index(request):
 
 
 def registerCar(request):
+    inUseCarsData = InUseCars.objects.all()
     if request.method == "POST":
         ceoN = request.POST["ceoNumber"]
         carnumberreq = request.POST.get("carNumber")  # Use .get() to avoid KeyError if carNumber is not in POST
         allregscars = RegistredCars.objects.all()
-        employe = EmployesInfo.objects.get(ceoNumber=ceoN)
 
         if carnumberreq:
             try:
                 car = RegistredCars.objects.get(carNumber=carnumberreq)
+                employe = EmployesInfo.objects.get(ceoNumber=ceoN)
+                new_inusecar = InUseCars(ceoNumber=ceoN,
+                                         carNumber=carnumberreq)
+                new_inusecar.save()
                 # If a car with this number exists, you can work with 'car'
                 print("Car found")
                 return render(request,"logsApp/registerCar.html",{"car":car, "em":employe})
@@ -28,7 +32,7 @@ def registerCar(request):
 
         return render(request, "logsApp/registerCar.html",{"all":allregscars})
     
-    return render(request, "logsApp/registerCar.html",)
+    return render(request, "logsApp/registerCar.html",{"inUserCarsData":InUseCars})
 
 
 def logsfunc(request):
