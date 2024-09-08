@@ -23,6 +23,10 @@ def registerCar(request):
                                          carNumber=carnumberreq)
                 new_inusecar.save()
                 # If a car with this number exists, you can work with 'car'
+                newInuseCar = InUseCars(ceoNumber=ceoN,
+                                        carNumber=carnumberreq,
+                                        instance=employe)
+                newInuseCar.save()
                 print("Car found")
                 return render(request,"logsApp/registerCar.html",{"car":car, "em":employe})
                 # Do something with 'car'

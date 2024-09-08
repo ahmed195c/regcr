@@ -14,6 +14,10 @@
         <input type="number" name="carNumber" id="carNumber" required>
         <input type="submit" value="add">
     </form>
+
+    <div>
+        <h1>in use cars data</h1>
+    </div>
     {% for i in all %}
     <h1>{{i.carNumber}}</h1>
     {% endfor %}
